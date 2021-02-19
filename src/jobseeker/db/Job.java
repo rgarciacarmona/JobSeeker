@@ -11,7 +11,7 @@ public class Job implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1077803972062837560L;
-	private int randomthing;
+	private int b;
 	private Integer id;
 	private String name;
 	private String description;
