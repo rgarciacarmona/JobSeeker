@@ -1,4 +1,4 @@
-package jobseeker.db;
+package jobseeker.db.pojos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class Job implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1077803972062837560L;
-	private int randomgarbage;
+
 	private Integer id;
 	private String name;
 	private String description;
