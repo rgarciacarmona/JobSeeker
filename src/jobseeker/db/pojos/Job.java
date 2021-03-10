@@ -16,11 +16,16 @@ public class Job implements Serializable {
 	private String name;
 	private String description;
 	private float salary;
+	// Dates are from the java.util package
 	private Date startDate;
 	private Date endDate;
+	// One side of the many to many relationship
 	private List<Person> people;
 	
+	// Mandatory empty constructor
 	public Job() {
+		super();
+		// Don't forget to initialize every list
 		this.people = new ArrayList<Person>();
 	}
 	
@@ -34,8 +39,6 @@ public class Job implements Serializable {
 		this.people = new ArrayList<Person>();
 	}
 	
-	
-	
 	public Job(Integer id, String name, String description, float salary, Date startDate, Date endDate,
 			List<Person> people) {
 		super();
@@ -48,8 +51,14 @@ public class Job implements Serializable {
 		this.people = people;
 	}
 
-
-
+	// Job prints people
+	@Override
+	public String toString() {
+		return "Job [id=" + id + ", name=" + name + ", description=" + description + ", salary=" + salary
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", people=" + people + "]";
+	}
+	
+	// Only with Id
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,7 +66,8 @@ public class Job implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
+	
+	// Only with Id
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,20 +85,14 @@ public class Job implements Serializable {
 		return true;
 	}
 	
-	
-	
-	@Override
-	public String toString() {
-		return "Job [id=" + id + ", name=" + name + ", description=" + description + ", salary=" + salary
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", people=" + people + "]";
-	}
-
+	// Added for convenience
 	public void addPerson(Person person) {
 		if (!people.contains(person)) {
 			people.add(person);
 		}
 	}
 	
+	// Added for convenience
 	public void removePerson(Person person) {
 		if (people.contains(person)) {
 			people.remove(person);
@@ -98,19 +102,15 @@ public class Job implements Serializable {
 	public List<Person> getPeople() {
 		return people;
 	}
-
 	public void setPeople(List<Person> people) {
 		this.people = people;
 	}
-
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
@@ -141,7 +141,5 @@ public class Job implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
-	
 	
 }

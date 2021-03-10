@@ -15,19 +15,21 @@ public class Person implements Serializable{
 	private String name;
 	private List<Job> jobs;
 	
-	
-	
+	// Mandatory empty constructor
 	public Person() {
 		super();
+		// Don't forget to initialize every list
 		this.jobs = new ArrayList<Job>();
 	}
 	
+	// Constructor created because it's used in the application
 	public Person(String name) {
 		super();
 		this.name = name;
 		this.jobs = new ArrayList<Job>();
 	}
 
+	// Constructor created because it's used in the application
 	public Person(Integer id, String name) {
 		super();
 		this.id = id;
@@ -35,17 +37,13 @@ public class Person implements Serializable{
 		this.jobs = new ArrayList<Job>();
 	}
 
-
-
-
-
-
+	// Person doesn't print jobs
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", name=" + name + "]";
 	}
 
-
+	// Only with Id
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +52,7 @@ public class Person implements Serializable{
 		return result;
 	}
 	
+	// Only with Id
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,7 +87,5 @@ public class Person implements Serializable{
 	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
 	}
-	
-	
-	
+
 }

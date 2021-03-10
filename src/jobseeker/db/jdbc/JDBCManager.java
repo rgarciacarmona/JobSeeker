@@ -35,23 +35,29 @@ public class JDBCManager implements DBManager {
 	}
 
 	private void createTables() {
-		// TODO If the tables are not created already, create them
+		// If the tables are not created already, create them
 		Statement stmt1;
 		try {
-			// Create the jobs table
 			stmt1 = c.createStatement();
-
-			String sql1 = "CREATE TABLE jobs " + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
-					+ " name     TEXT     NOT NULL, " + " description  TEXT	 NOT NULL, " + " salary  REAL	 NOT NULL, "
-					+ " startDate  DATE	 NOT NULL, " + " endDate  DATE	 NOT NULL)";
+			// Create table jobs
+			String sql1 = "CREATE TABLE jobs "
+					+ "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
+					+ " name     TEXT     NOT NULL, "
+					+ " description  TEXT	 NOT NULL, "
+					+ " salary  REAL	 NOT NULL, "
+					+ " startDate  DATE	 NOT NULL, "
+					+ " endDate  DATE	 NOT NULL)";
 			stmt1.executeUpdate(sql1);
-
-			sql1 = "CREATE TABLE people " + "(id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL)";
+			// Create table people
+			sql1 = "CREATE TABLE people "
+					+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ "name TEXT NOT NULL)";
 			stmt1.executeUpdate(sql1);
-
-			sql1 = "CREATE TABLE jobs_people " + "(job_id INTEGER REFERENCES jobs(id), "
-					+ "person_id INTEGER REFERENCES people(id), " + "PRIMARY KEY (job_id, person_id))";
-			
+			// Create table jobs_people
+			sql1 = "CREATE TABLE jobs_people "
+					+ "(job_id INTEGER REFERENCES jobs(id), "
+					+ "person_id INTEGER REFERENCES people(id), "
+					+ "PRIMARY KEY (job_id, person_id))";
 			stmt1.executeUpdate(sql1);
 			stmt1.close();
 		} catch (SQLException e) {
@@ -65,6 +71,7 @@ public class JDBCManager implements DBManager {
 	@Override
 	public void disconnect() {
 		try {
+			// Close database connection
 			c.close();
 		} catch (SQLException e) {
 			System.out.println("There was a problem while closing the database connection.");
@@ -75,6 +82,7 @@ public class JDBCManager implements DBManager {
 	@Override
 	public void addPerson(Person p) {
 		try {
+			// Id is chosen by the database
 			Statement stmt = c.createStatement();
 			String sql = "INSERT INTO people (name) VALUES ('" + p.getName() + "')";
 			stmt.executeUpdate(sql);
@@ -93,11 +101,12 @@ public class JDBCManager implements DBManager {
 
 	@Override
 	public List<Person> searchPersonByName(String name) {
+		// TODO Unsafe method, update later
+		// TODO What happens if name is null?
 		List<Person> people = new ArrayList<Person>();
 		try {
 			Statement stmt = c.createStatement();
 			String sql = "SELECT * FROM people WHERE name LIKE '%" + name + "%'";
-			// SELECT * FROM people WHERE name LIKE '%lo%'
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) { // true: there is another result and I have advanced to it
 								// false: there are no more results
