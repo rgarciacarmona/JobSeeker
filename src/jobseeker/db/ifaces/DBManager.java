@@ -29,7 +29,12 @@ public interface DBManager {
 	// If name is empty or null, return all jobs
 	public List<Job> searchJobsByName(String name);
 	
+	// Gets the people that work at a given job
+	public List<Person> getPeopleOfJob(int jobId);
+	
 	// Assign a person to a job
 	public void hire(Person p, Job j);
+	// Remove a person from a job
+	public void fire(int personId, int jobId);
 	
 }

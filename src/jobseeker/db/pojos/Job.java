@@ -2,7 +2,7 @@ package jobseeker.db.pojos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Job implements Serializable {
@@ -29,6 +29,17 @@ public class Job implements Serializable {
 		this.people = new ArrayList<Person>();
 	}
 	
+	public Job(Integer id, String name, String description, float salary, Date startDate, Date endDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.salary = salary;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.people = new ArrayList<Person>();
+	}
+
 	public Job(String name, String description, float salary, Date startDate, Date endDate) {
 		super();
 		this.name = name;
