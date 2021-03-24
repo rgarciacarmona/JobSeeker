@@ -16,7 +16,7 @@ public class Job implements Serializable {
 	private String name;
 	private String description;
 	private float salary;
-	// Dates are from the java.util package
+	// Dates are from the java.sql package
 	private Date startDate;
 	private Date endDate;
 	// One side of the many to many relationship
